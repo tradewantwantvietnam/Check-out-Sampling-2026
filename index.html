@@ -239,7 +239,7 @@
     <div class="logo-icon">📸</div>
     <div class="header-text">
       <h3>Check-out Sampling 2026</h3>
-      <p>Chụp ảnh báo cáo khi bắt đầu ca làm việc</p>
+      <p>Chụp ảnh báo cáo khi kết thúc ca làm việc</p>
     </div>
   </div>
 
@@ -293,7 +293,7 @@
 
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzu_w6vDyxbSCVE5ryj7lCeatoj8ZQHycSVVSHLiesgdgXjmVzBBwjzxUw5jaFD-d-0/exec";
-const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe-f946yjSe9lr6iVp4kzvzGHGlHxHzg-uhOyJpzuleh-raLQ/viewform?usp=dialog";
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe-f946yjSe9lr6iVp4kzvzGHGlHxHzg-uhOyJpzuleh-raLQ/viewform?usp=pp_url";
 const ENTRY_ID = "entry.474222185";
 
 let stream;
@@ -498,8 +498,18 @@ async function copyToClipboard(text) {
 }
 function goForm(){
   if(!uploadedLink) return;
-  const url = FORM_URL + "?" + ENTRY_ID + "=" + encodeURIComponent(uploadedLink);
-  window.open(url, "_blank");
+
+  const url =
+    FORM_URL +
+    "&" +
+    ENTRY_ID +
+    "=" +
+    encodeURIComponent(uploadedLink);
+
+  console.log("Form URL:", url);
+
+  location.href = url;
+
   updateStep(3);
 }
 </script>
